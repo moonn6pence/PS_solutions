@@ -1,6 +1,0 @@
-a,b=map(int,input().split())
-r_a,r_b=list(str(a)),list(str(b))
-a=int(r_a[2]+r_a[1]+r_a[0])
-b=int(r_b[2]+r_b[1]+r_b[0])
-if a>b:print(a)
-else:print(b)
