@@ -16,7 +16,6 @@ low, high = 1, 2**31-1
 
 while low < high:
     mid = (low+high+1)//2
-    print(low, mid, high)
     cnt = countLAN(mid)
     if cnt >= n:
         low = mid
