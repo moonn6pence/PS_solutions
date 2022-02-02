@@ -1,4 +1,5 @@
 from sys import stdin
+input = stdin.readline
 
 
 def checkRouter(dist, n, c):
@@ -11,7 +12,7 @@ def checkRouter(dist, n, c):
     return True if cnt >= c else False
 
 
-n, c = map(int, stdin.readline().split())
+n, c = map(int, input().split())
 house = []
 for _ in range(n):
     house.append(int(input()))
