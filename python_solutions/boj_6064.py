@@ -5,7 +5,7 @@ def xCRT(M, N, x, y):
     if (y-x) % g != 0:
         return -1
     ret = (M*((y-x)//g)*k1+x) % lcm
-    if ret < 0:
+    while ret <= 0:
         ret += lcm
     return ret
 
