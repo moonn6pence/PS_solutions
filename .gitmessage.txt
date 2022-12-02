@@ -17,12 +17,19 @@
 # ex)
 # boj 2629
 # 220915 양팔저울 cpp
-# dp
-
+# 
+# - knapsack dp
+###############
+# ex2)
+# algospot MINASTIRITH
+# 221009 미나스 아노르 cpp
+# 
+# - greedy, fmod, atan2, asin, acos, 탐욕적 선택 증명
 ################
 # programmers : 프로그래머스
 # boj : 백준
 # algospot : 알고스팟
-# 
+# basic : 알고리즘, 자료구조 연습
+# docs : 문서 수정
 # refact : 코드 리팩토링
 ################
