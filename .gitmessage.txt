@@ -22,10 +22,17 @@
 ###############
 # ex2)
 # algospot MINASTIRITH
-# 221009 미나스 아노르 cpp
-# 
+# - 221009 미나스 아노르 cpp
 # - greedy, fmod, atan2, asin, acos, 탐욕적 선택 증명
 ################
+# ex3)
+# programmers 게임 맵 최단거리
+# - 221217 게임 맵 최단거리
+# - BFS
+# - queue 써야하는데 priority_queue 쓰다가 헤맴
+# - queue의 맨 앞 요소는 front()로 꺼내고 삭제는 pop(), 마지막 요소는 back()
+#
+#################
 # programmers : 프로그래머스
 # boj : 백준
 # algospot : 알고스팟
