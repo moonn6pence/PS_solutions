@@ -3,69 +3,31 @@
 
 using namespace std;
 int N;
-int visited[10];
 
 void input(){
     cin >> N;
 }
 
-int calculate(int depth, int sum){
-    if(visited[depth] == 1){
-        return sum + depth;
-    }
-
-    if(visited[depth] == 2){
-        return sum - depth;
-    }
-
-    if(visited[depth] == 3){
-        return sum + depth * 10;
-    }
-
-    return 0;
-}
-
-string getOperator(int depth){
-    if(depth == N) return "";
-
-    if(visited[depth] == 1) return "+";
-
-    if (visited[depth] == 2) return "-";
-
-    return " ";
-}
-
-void solve(int depth, int sum, int buff){
+void solve(int depth, int sign, int sum, int buff, string str){
     if(depth == N){
-        if (sum + buff == 0){
-            cout << "1";
-            for (int i = 1; i < N; i++){
-                cout << getOperator(i) << i + 1;
-            }
-            cout << '\n';
+        sum += (buff * sign);
+        if (sum == 0){
+            cout << str << '\n';
         }
         return;
     }
 
-    int newBuff;
-    visited[depth] = 0;
-    if(buff >= 0)
-        newBuff = buff * 10 + depth + 1;
-    else
-        newBuff = buff * 10 - depth - 1;
-    solve(depth + 1, sum, newBuff);
+    // depth, sign, sum, buff
+    solve(depth + 1, sign, sum, buff * 10 + depth * sign, str + ' ' + char(depth + 1 + '0'));
 
-    visited[depth] = 1;
-    solve(depth + 1, sum + buff, depth + 1);
+    solve(depth + 1, 1, sum + buff * sign, depth * sign, str + '+' + char(depth + 1 + '0'));
 
-    visited[depth] = 2;
-    solve(depth + 1, sum + buff, -depth - 1);
+    solve(depth + 1, -1, sum + buff * sign, depth * sign, str + '-' + char(depth + 1 + '0'));
 }
 
 void solution(){
     input();
-    visited[0] = 1;
-    solve(1, 0, 1);
+    solve(1, 1, 0, 1, "1");
 }
 
 int main(){
