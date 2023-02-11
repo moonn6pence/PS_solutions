@@ -2,15 +2,31 @@
 
 using namespace std;
 typedef long long ll;
-int N;
+ll N;
+bool isPrime[40000];
+vector<int> prime;
+map<int, int> factor;
 
-int input(){
+void init(){
+    fill(&isPrime[0], &isPrime[40000], true);
+    isPrime[0] = isPrime[1] = false;
+
+    for (int i = 2; i < 40000; i++){
+        if (!isPrime[i]) continue;
+        prime.push_back(i);
+        for (int j = i * i; j < 40000; j += i){
+            isPrime[j] = false;
+        }
+    }
+}
+
+ll input(){
     cin >> N;
 
     return N;
 }
 
-ll pow(int n, int r){
+ll pow(ll n, ll r){
     ll ret = 1;
 
     while (r){
@@ -23,32 +39,38 @@ ll pow(int n, int r){
     return ret;
 }
 
-ll getEulersPhi(int a,int n){
-    return pow(a, n - 1) * (a - 1);
+ll getEulersPhi(ll a,ll n){
+    return pow(a, n - 1) * (a - 1); 
+}
+
+void getFactor(int x){
+    if (x == 1) return;
+
+    for(auto i : prime){
+        if (x % i == 0){
+            factor[i]++;
+            getFactor(x / i);
+            return;
+        }
+    }
+    
+    if (x != 1) factor[x]++;
 }
 
 ll solve(){
     if (N == 1) return 0;
+    
+    factor.clear();
+    getFactor(N);
 
-    ll ret = 1, base = 1;
-
-    while (N > 1){
-        int exp = 0;
-        base++;
-        if (N % base) continue;
-
-        while (N % base == 0){
-            N /= base;
-            exp++;
-        }
-
-        ret *= getEulersPhi(base, exp);
-    }
+    ll ret = 1;
+    for(auto iter : factor) ret *= getEulersPhi(iter.first, iter.second);
 
     return ret;
 }
 
 void solution(){
+    init();
     while(input()){
         cout << solve() << '\n';
     }
