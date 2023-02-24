@@ -77,15 +77,15 @@ int main() {
     // 4. 문자 판별
     // cctype 헤더
     string ex4 = "aA12 ";
-    cout << ex4[0] << " is a digit : " << isdigit(ex4[0]) << '\n';
-    cout << ex4[0] << " is a alpha : " << isalpha(ex4[0]) << '\n';
+    cout << ex4[0] << " is a digit : " << isdigit(ex4[0]) << '\n'; // a is a digit : 0
+    cout << ex4[0] << " is a alpha : " << isalpha(ex4[0]) << '\n'; // a is a digit : 0
 
-    cout << ex4[2] << " is a digit : " << isdigit(ex4[2]) << '\n';
-    cout << ex4[2] << " is a alpha : " << isalpha(ex4[2]) << '\n';
+    cout << ex4[2] << " is a digit : " << isdigit(ex4[2]) << '\n'; // a is a digit : 0
+    cout << ex4[2] << " is a alpha : " << isalpha(ex4[2]) << '\n'; // 1 is a alpha : 0
 
-    cout << ex4[1] << " is a upper : " << isupper(ex4[1]) << '\n';
-    cout << ex4[1] << " is a lower : " << islower(ex4[1]) << '\n';
-    cout << ex4[4] << " is a space : " << isspace(ex4[4]) << '\n';
+    cout << ex4[1] << " is a upper : " << isupper(ex4[1]) << '\n'; // A is a upper : 1
+    cout << ex4[1] << " is a lower : " << islower(ex4[1]) << '\n'; // A is a lower : 0
+    cout << ex4[4] << " is a space : " << isspace(ex4[4]) << '\n'; //   is a space : 1
 
     // 5. 문자열 탐색, 추출
     string ex5 = "hello string";
@@ -109,10 +109,16 @@ int main() {
     cout << ex5_2.find_last_not_of("cpp") << '\n'; // 문자들 아닌 마지막 인덱스
 
     // 5-3. 특정문자열 갯수 카운트
+    string ex5_3 = "hello java and spring boot";
 
+    regex re("a"); // 타겟 문자열
+    auto end = sregex_iterator();
+    auto iter = sregex_iterator(ex5_3.begin(), ex5_3.end(), re);
+
+    cout << "\'a\' count : " << distance(iter, end) << '\n'; // 'a' count : 3
 }
 
-// 3. split 함수 구현
+// 6. split 함수 구현
 // str : 타겟문자열, char : 구분자
 vector<string> split(string str, char delimiter){
     istringstream iss(str); // 문자열 스트림
@@ -128,8 +134,8 @@ vector<string> split(string str, char delimiter){
 }
 
 
-// 4. trim 함수 구현
-// 4-1. string 함수로 구현
+// 7. trim 함수 구현
+// 7-1. string 함수로 구현
 // 전부 제거
 string trim(string str){
     while (str.find(' ') != string::npos) str.erase(str.find(' '),1);
@@ -137,7 +143,7 @@ string trim(string str){
     return str;
 }
 
-// 앞 뒤 제거
+// 7-2. 앞 뒤 제거
 // 공백 말고도 가능
 string trim2(string str){
     str.erase(0, str.find_first_not_of(' '));
@@ -146,7 +152,7 @@ string trim2(string str){
     return str;
 }
 
-// 4-2. regex로 구현
+// 7-3. regex로 구현
 string ltrim(string str){
     return regex_replace(str, regex("^\\s+"), "");
 }
