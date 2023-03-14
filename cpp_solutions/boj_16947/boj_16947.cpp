@@ -76,10 +76,6 @@ void solution(){
     }
 
     for (int i = 1; i <= N; i++) cout << dist[i] << ' ';
-
-    cout << '\n';
-    for (int i = 1; i <= N;i++)
-        cout << isCycle[i] << ' ';
 }
 
 int main() {
